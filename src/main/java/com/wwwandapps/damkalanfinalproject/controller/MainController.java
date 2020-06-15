@@ -15,11 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JsonParser;
 import org.springframework.boot.json.JsonParserFactory;
 import org.springframework.http.*;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,7 +28,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-@RestController
+@Controller
 public class MainController {
 
   @Autowired
@@ -38,30 +38,35 @@ public class MainController {
 
 
 
-
+  @RequestMapping("home")
+  public String home() {
+    System.out.println("hi");
+    return "home.jsp";
+  }
 
   @GetMapping("/users")
-  public List<User> allUsers() {
+  public  @ResponseBody List<User> allUsers() {
 
     return userService.userAllData();
+
   }
 
 
   @GetMapping("/usersandteams")
-  public List<UserDetails> usersandteams() {
+  public  @ResponseBody List<UserDetails> usersandteams() {
 
     return userService.usersandtheirteams();
   }
 
 
   @GetMapping("/users/count")
-  public Long count() {
+  public  @ResponseBody Long count() {
 
     return userService.count();
   }
 
   @DeleteMapping("/users/{id}")
-  public void delete(@PathVariable String id) {
+  public  @ResponseBody  void   delete(@PathVariable String id) {
 
     Long userId = Long.parseLong(id);
     userService.deleteById(userId);
@@ -72,7 +77,7 @@ public class MainController {
   ObjectMapper objectMapper;
 
   @GetMapping("/getteamsfromNBAApi")
-  public String test() throws IOException {
+  public   @ResponseBody String test() throws IOException {
     String url="https://free-nba.p.rapidapi.com/teams";
     RestTemplate restTemplate = new RestTemplate();
 
@@ -117,7 +122,7 @@ public class MainController {
 
 
 
-  return "ok";
+  return "Teams fetched to database";
   }
 
 
