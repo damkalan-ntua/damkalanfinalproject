@@ -1,3 +1,7 @@
+<%@ page session="false"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,10 +21,9 @@
 
 
 Search user:
-<form action="getUser">
-<input type="text" name="username"><br>
-<input type="submit"><br>
-</form>
+
+
+
 
 </body>
 </html>

@@ -95,4 +95,8 @@ import java.util.Objects;
       sb.append('}');
       return sb.toString();
     }
+
+     public boolean isNew() {
+         return (this.id == null);
+     }
   }

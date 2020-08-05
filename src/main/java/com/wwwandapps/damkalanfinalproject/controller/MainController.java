@@ -1,9 +1,7 @@
 package com.wwwandapps.damkalanfinalproject.controller;
 
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wwwandapps.damkalanfinalproject.dom.UserDetails;
 import com.wwwandapps.damkalanfinalproject.model.*;
@@ -12,27 +10,22 @@ import com.wwwandapps.damkalanfinalproject.service.*;
 import com.wwwandapps.damkalanfinalproject.model.Nbateam;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.json.JsonParser;
-import org.springframework.boot.json.JsonParserFactory;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
+import java.util.Optional;
 
 @Controller
 public class MainController {
 
   @Autowired
-  private UserService userService;
+  private UserServiceCrud userServiceCrud;
   @Autowired
   private NbateamRepository NbateamRepository;
 
@@ -44,10 +37,10 @@ public class MainController {
     return "home.jsp";
   }
 
-  @GetMapping("/users")
+  @GetMapping("/userss")
   public  @ResponseBody List<User> allUsers() {
 
-    return userService.userAllData();
+    return userServiceCrud.userAllData();
 
   }
 
@@ -55,22 +48,34 @@ public class MainController {
   @GetMapping("/usersandteams")
   public  @ResponseBody List<UserDetails> usersandteams() {
 
-    return userService.usersandtheirteams();
+    return userServiceCrud.usersandtheirteams();
   }
 
 
   @GetMapping("/users/count")
   public  @ResponseBody Long count() {
 
-    return userService.count();
+    return userServiceCrud.count();
   }
 
-  @DeleteMapping("/users/{id}")
-  public  @ResponseBody  void   delete(@PathVariable String id) {
 
-    Long userId = Long.parseLong(id);
-    userService.deleteById(userId);
+
+
+  @RequestMapping(value = "/users/crud/{id}", method = RequestMethod.GET)
+
+    public String showUser(@PathVariable("id") Long id, Model model) {
+
+    Optional user = userServiceCrud.findByID(id);
+    if (user == null) {
+      model.addAttribute("css", "danger");
+      model.addAttribute("msg", "User not found");
+    }
+    model.addAttribute("user", user);
+    return "showusers";
   }
+
+
+
 
 
   @Autowired
