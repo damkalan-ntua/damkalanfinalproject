@@ -81,5 +81,8 @@ import java.util.Objects;
      }
 
 
+     public boolean isNew() {
+         return (this.id == null);
+     }
 
  }

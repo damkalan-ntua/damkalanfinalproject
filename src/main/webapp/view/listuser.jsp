@@ -34,14 +34,13 @@
 				</tr>
 			</thead>
 
-			<c:forEach var="user" items="${users}">
 			    <tr>
-                    <td>${user.firstName }</td>
+                    <td>${user.firstName}</td>
                     <td>${user.email}</td>
                     <td> ${user.city}</td>
 
                     <td>
-                      <spring:url value="/users/${user.id}/delete" var="userUrl" />
+                      <spring:url value="/users/${user.id}/delete" var="home" />
                       <spring:url value="/users/${user.id}/delete" var="deleteUrl" />
                       <spring:url value="/users/${user.id}/update" var="updateUrl" />
 
@@ -53,8 +52,12 @@
                                               onclick="this.disabled=true;post('${deleteUrl}')">Delete</button>
                     </td>
 			    </tr>
-			</c:forEach>
 		</table>
+		<br>
+		<spring:url value="/home" var="homeUrl" />
+		<button class="btn btn-info"  onclick="location.href='${homeUrl}'">Home</button>
+		</br>
+
 
 	</div>
 

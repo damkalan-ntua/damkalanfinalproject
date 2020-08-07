@@ -1,22 +1,29 @@
-package com.wwwandapps.damkalanfinalproject.dom;
- 
+package com.wwwandapps.damkalanfinalproject.model;
 
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.util.Objects;
  
- public class UserDetails {
+ public class Userdetails {
 
     private Long id;
     private String firstName;
     private String email;
-     private String city;
+    private String city;
     private String teamname;
+    private Long  nbateamid;
+    public Userdetails() {}
 
-    public UserDetails() {}
-
-    public UserDetails(String firstName, String email, String teamname, String city) {
+    public Userdetails(Long id,String firstName, String email, String teamname, String city,Long  nbateamid) {
+      this.id = id;
       this.firstName = firstName;
       this.email = email;
       this.teamname = teamname;
-        this.city = city;
+      this.city = city;
+      this.nbateamid = nbateamid;
     }
 
     public Long getId() {
@@ -58,5 +65,13 @@ package com.wwwandapps.damkalanfinalproject.dom;
      public void setCity(String city) {
          this.city = city;
      }
- 
+
+     public Long getNbateamid() {
+         return nbateamid;
+     }
+
+     public void setNbateamid(Long nbateamid) {
+         this.nbateamid = nbateamid;
+     }
+
   }

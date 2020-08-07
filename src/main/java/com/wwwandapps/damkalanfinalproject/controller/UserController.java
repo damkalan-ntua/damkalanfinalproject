@@ -39,26 +39,23 @@ public class UserController {
 
 
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index(Model model) {
-        logger.debug("index()");
-        return "redirect:/home";
-    }
 
-    // list page
     @RequestMapping(value = "/users/list", method = RequestMethod.GET)
     public String showAllUsers(Model model) {
-
         logger.debug("showAllUsers()");
         model.addAttribute("users", userService.findAll());
         return "listusers.jsp";
 
     }
 
-    // save or update user
-    // 1. @ModelAttribute bind form value
-    // 2. @Validated form validator
-    // 3. RedirectAttributes for flash value
+
+    @RequestMapping(value = "/users/{id}/list", method = RequestMethod.GET)
+    public String showUserById(@PathVariable("id") Long id,Model model) {
+        logger.debug("showUserById()");
+        model.addAttribute("user", userService.findById(id));
+        return "listuser.jsp";
+    }
+
     @RequestMapping(value = "/users", method = RequestMethod.POST)
     public String saveOrUpdateUser(@ModelAttribute("userForm") @Validated User user,
                                    BindingResult result, Model model,
@@ -67,7 +64,6 @@ public class UserController {
         logger.debug("saveOrUpdateUser() : {}", user);
 
         if (result.hasErrors()) {
-            populateDefaultModel(model);
             return "users/userform";
         } else {
 
@@ -105,9 +101,6 @@ public class UserController {
         user.setCity("Athens");
         user.setTeam(1);
         model.addAttribute("userForm", user);
-
-        populateDefaultModel(model);
-
         return "users/userform";
     }
 
@@ -119,9 +112,6 @@ public class UserController {
 
         User user = userService.findById(id);
         model.addAttribute("userForm", user);
-
-        populateDefaultModel(model);
-
         return "users/userform";
 
     }
@@ -156,42 +146,6 @@ public class UserController {
         model.addAttribute("user", user);
 
         return "users/show";
-
-    }
-
-    private void populateDefaultModel(Model model) {
-
-        List<String> frameworksList = new ArrayList<String>();
-        frameworksList.add("Spring MVC");
-        frameworksList.add("Struts 2");
-        frameworksList.add("JSF 2");
-        frameworksList.add("GWT");
-        frameworksList.add("Play");
-        frameworksList.add("Apache Wicket");
-        model.addAttribute("frameworkList", frameworksList);
-
-        Map<String, String> skill = new LinkedHashMap<String, String>();
-        skill.put("Hibernate", "Hibernate");
-        skill.put("Spring", "Spring");
-        skill.put("Struts", "Struts");
-        skill.put("Groovy", "Groovy");
-        skill.put("Grails", "Grails");
-        model.addAttribute("javaSkillList", skill);
-
-        List<Integer> numbers = new ArrayList<Integer>();
-        numbers.add(1);
-        numbers.add(2);
-        numbers.add(3);
-        numbers.add(4);
-        numbers.add(5);
-        model.addAttribute("numberList", numbers);
-
-        Map<String, String> country = new LinkedHashMap<String, String>();
-        country.put("US", "United Stated");
-        country.put("CN", "China");
-        country.put("SG", "Singapore");
-        country.put("MY", "Malaysia");
-        model.addAttribute("countryList", country);
 
     }
 

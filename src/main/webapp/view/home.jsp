@@ -9,10 +9,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+<br/>
+Users and Nba teams from NBAApi
+<br/><br/><br/><br/>
 
 <a href="/users/count">Show number of  users</a>
 <p></p>
-<a href="/users">Show  users details</a>
+<a href="/users/list">List users with details</a>
 <p></p>
 <a href="/usersandteams">Show  users and and teams</a>
 <p></p>

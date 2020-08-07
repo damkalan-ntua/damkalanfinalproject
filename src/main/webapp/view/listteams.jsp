@@ -22,28 +22,31 @@
 		    </div>
 		</c:if>
 
-		<h1>All Users</h1>
+		<h1>All Teams </h1>
 
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>first_name</th>
-					<th>Email</th>
+					<th>name</th>
+					<th>fullname</th>
 					<th>city</th>
-					<th>Actions</th>
+					<th>conference</th>
+					<th>abbreviation</th>
 				</tr>
 			</thead>
 
-			<c:forEach var="user" items="${users}">
+			<c:forEach var="nbateam" items="${nbateams}">
 			    <tr>
-                    <td>${user.firstName }</td>
-                    <td>${user.email}</td>
-                    <td> ${user.city}</td>
+                    <td>${nbateam.name}</td>
+                    <td>${nbateam.fullname}</td>
+                    <td> ${nbateam.city}</td>
+                    <td>${nbateam.conference}</td>
+                    <td> ${nbateam.division}</td>
 
                     <td>
-                      <spring:url value="/users/${user.id}/delete" var="userUrl" />
-                      <spring:url value="/users/${user.id}/delete" var="deleteUrl" />
-                      <spring:url value="/users/${user.id}/update" var="updateUrl" />
+                      <spring:url value="/nbateam/${nbateam.id}/delete" var="userUrl" />
+                      <spring:url value="/nbateam/${nbateam.id}/delete" var="deleteUrl" />
+                      <spring:url value="/nbateam/${nbateam.id}/update" var="updateUrl" />
 
                       <button class="btn btn-info"
                                               onclick="location.href='${userUrl}'">Query</button>
@@ -55,6 +58,11 @@
 			    </tr>
 			</c:forEach>
 		</table>
+
+				<br>
+        		<spring:url value="/home" var="homeUrl" />
+        		<button class="btn btn-info"  onclick="location.href='${homeUrl}'">Home</button>
+        		</br>
 
 	</div>
 
