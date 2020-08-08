@@ -12,21 +12,16 @@
 
 	<div class="container">
 
-		<c:if test="${not empty msg}">
-		    <div class="alert alert-${css} alert-dismissible" role="alert">
-			<button type="button" class="close" data-dismiss="alert"
-                                aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-			<strong>${msg}</strong>
-		    </div>
-		</c:if>
+		<h1>All NBA Teams detail </h1>
 
-		<h1>All Teams </h1>
+
+
+        <a href="/getteamsfromNBAApi">Fetch/Update nba teams data from NBAApi</a>
 
 		<table class="table table-striped">
 			<thead>
 				<tr>
+				    <th>id</th>
 					<th>name</th>
 					<th>fullname</th>
 					<th>city</th>
@@ -37,6 +32,7 @@
 
 			<c:forEach var="nbateam" items="${nbateams}">
 			    <tr>
+			        <td>${nbateam.id}</td>
                     <td>${nbateam.name}</td>
                     <td>${nbateam.fullname}</td>
                     <td> ${nbateam.city}</td>
@@ -44,16 +40,8 @@
                     <td> ${nbateam.division}</td>
 
                     <td>
-                      <spring:url value="/nbateam/${nbateam.id}/delete" var="userUrl" />
-                      <spring:url value="/nbateam/${nbateam.id}/delete" var="deleteUrl" />
-                      <spring:url value="/nbateam/${nbateam.id}/update" var="updateUrl" />
-
-                      <button class="btn btn-info"
-                                              onclick="location.href='${userUrl}'">Query</button>
-                      <button class="btn btn-primary"
-                                              onclick="location.href='${updateUrl}'">Update</button>
-                      <button class="btn btn-danger"
-                                              onclick="this.disabled=true;post('${deleteUrl}')">Delete</button>
+                        <spring:url value="/nbateams/${nbateam.id}/delete" var="deleteUrl" />
+                        <button class="btn btn-info" onclick="location.href='${deleteUrl}'">Delete</button>
                     </td>
 			    </tr>
 			</c:forEach>

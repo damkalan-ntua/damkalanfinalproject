@@ -1,29 +1,17 @@
 package com.wwwandapps.damkalanfinalproject.controller;
-
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.wwwandapps.damkalanfinalproject.model.*;
 import com.wwwandapps.damkalanfinalproject.repository.NbateamRepository;
-import com.wwwandapps.damkalanfinalproject.service.*;
 import com.wwwandapps.damkalanfinalproject.model.Nbateam;
-import org.springframework.web.servlet.ModelAndView;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.bind.annotation.PathVariable;
-
 import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class NbateamCrudController {
-
 
     @Autowired
     private NbateamRepository NbateamRepository;
@@ -31,12 +19,8 @@ public class NbateamCrudController {
     @Autowired
     ObjectMapper objectMapper;
 
-
-
-
-
     @GetMapping("/getteamsfromNBAApi")
-    public   @ResponseBody String test() throws IOException {
+    public  String test() throws IOException {
         String url="https://free-nba.p.rapidapi.com/teams";
         RestTemplate restTemplate = new RestTemplate();
 
@@ -46,7 +30,6 @@ public class NbateamCrudController {
         // example of custom header
         headers.set("x-rapidapi-host", "free-nba.p.rapidapi.com");
         headers.set("x-rapidapi-key", "b14125264dmsh0d7147c68ab0cd8p1e67b8jsnaef4f8b5cc9c");
-
 
         // build the request
         HttpEntity request = new HttpEntity(headers);
@@ -60,16 +43,12 @@ public class NbateamCrudController {
                 1
         );
 
-
         NbateamRepository.deleteAll();
-
-
         String responseStr = resp.getBody();
         int begin = responseStr.indexOf("{");
         int end = responseStr.lastIndexOf("}") + 1;
         responseStr = responseStr.substring(begin, end);
         JsonNode arrNode = new ObjectMapper().readTree(responseStr).get("data");
-
 
         if (arrNode.isArray()) {
             for (final JsonNode objNode : arrNode) {
@@ -80,10 +59,6 @@ public class NbateamCrudController {
                 NbateamRepository.save(tempteam);
             }
         }
-
-        return "Teams fetched to database";
-
+        return "redirect:/nbateams/list";
     }
-
-
 }

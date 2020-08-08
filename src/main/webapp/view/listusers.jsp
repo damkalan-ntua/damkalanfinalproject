@@ -30,6 +30,7 @@
 					<th>first_name</th>
 					<th>Email</th>
 					<th>city</th>
+					<th>NBA team id</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -39,6 +40,8 @@
                     <td>${user.firstName }</td>
                     <td>${user.email}</td>
                     <td> ${user.city}</td>
+                     <td>
+                    <a href="/nbateams/${user.nbateamid}/list">${user.nbateamid}</a>
                     <td>
                       <spring:url value="/users/${user.id}/list" var="userUrl" />
                       <spring:url value="/users/${user.id}/update" var="updateUrl" />
@@ -50,6 +53,10 @@
 			    </tr>
 			</c:forEach>
 		</table>
+        <br>
+        <spring:url value="/home" var="homeUrl" />
+        <button class="btn btn-info"  onclick="location.href='${homeUrl}'">Home</button>
+        </br>
 
 	</div>
 

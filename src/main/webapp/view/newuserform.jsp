@@ -23,7 +23,7 @@
 		    </div>
 		</c:if>
 
-		<h1>Edit user</h1>
+		<h1>Add user</h1>
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -53,6 +53,13 @@
                         <spring:bind path="city">
                             <div>
                                 <form:input path="city" id="city" placeholder="city" />
+                            </div>
+                        </spring:bind>
+                    </td>
+                    <td>
+                        <spring:bind path="nbateamid" >
+                            <div>
+                                <form:input path="nbateamid" id="nbateamid" placeholder="nbateamid" />
                             </div>
                         </spring:bind>
                     </td>

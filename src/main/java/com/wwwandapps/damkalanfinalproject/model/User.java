@@ -20,11 +20,11 @@ import java.util.Objects;
 
     public User() {}
 
-    public User(String firstName, String email, int nbateamid, String city) {
-      this.firstName = firstName;
-      this.email = email;
-      this.nbateamid = nbateamid;
-      this.city = city;
+    public User(String firstName, String email,  int  nbateamid, String city) {
+        this.firstName = firstName;
+        this.email = email;
+        this.city = city;
+        this.nbateamid = nbateamid;
     }
 
     public Long getId() {
@@ -43,11 +43,11 @@ import java.util.Objects;
       this.firstName = firstName;
     }
 
-    public int getTeam() {
+    public int getNbateamid() {
       return nbateamid;
     }
 
-    public void setTeam( int nbateamid) {
+    public void setNbateamid( int nbateamid) {
       this.nbateamid = nbateamid;
     }
 
@@ -59,11 +59,11 @@ import java.util.Objects;
       this.email = email;
     }
 
-     public String getCity() {
+    public String getCity() {
          return city;
      }
 
-     public void setCity(String city) {
+    public void setCity(String city) {
          this.city = city;
      }
 
@@ -86,17 +86,17 @@ import java.util.Objects;
 
     @Override
     public String toString() {
-      final StringBuilder sb = new StringBuilder("User{");
-      sb.append("id=").append(id);
-      sb.append(", firstName='").append(firstName).append('\'');
-      sb.append(", email='").append(email).append('\'');
-      sb.append(", city='").append(city).append('\'');
-      sb.append(", nbateamid='").append(nbateamid).append('\'');
-      sb.append('}');
-      return sb.toString();
+        final StringBuilder sb = new StringBuilder("User{");
+        sb.append("id=").append(id);
+        sb.append(", firstName='").append(firstName).append('\'');
+        sb.append(", email='").append(email).append('\'');
+        sb.append(", city='").append(city).append('\'');
+        sb.append(", nbateamid='").append(nbateamid).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 
-     public boolean isNew() {
+    public boolean isNew() {
          return (this.id == null);
      }
   }

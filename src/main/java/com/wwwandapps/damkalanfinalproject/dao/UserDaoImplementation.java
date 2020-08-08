@@ -66,7 +66,6 @@ public class UserDaoImplementation implements UserDao {
         user.setId(keyHolder.getKey().longValue());
     }
 
-
     @Override
     public void save(User user) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -97,19 +96,18 @@ public class UserDaoImplementation implements UserDao {
         paramSource.addValue("firstName", user.getFirstName());
         paramSource.addValue("email", user.getEmail());
         paramSource.addValue("city", user.getCity());
-        paramSource.addValue("nbateamid", user.getTeam());
+        paramSource.addValue("nbateamid", user.getNbateamid());
         return paramSource;
     }
 
     private static final class UserMapper implements RowMapper<User> {
-
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
             User user = new User();
             user.setId(rs.getLong("id"));
             user.setFirstName(rs.getString("first_name"));
             user.setEmail(rs.getString("email"));
             user.setCity(rs.getString("city"));
-            user.setTeam(rs.getInt("nbateamid"));
+            user.setNbateamid(rs.getInt("nbateamid"));
             return user;
         }
     }
@@ -129,5 +127,4 @@ public class UserDaoImplementation implements UserDao {
         }
         return result;
     }
-
 }

@@ -46,6 +46,10 @@
 			    </tr>
 			</c:forEach>
 		</table>
+        <br>
+        <spring:url value="/home" var="homeUrl" />
+        <button class="btn btn-info"  onclick="location.href='${homeUrl}'">Home</button>
+        </br>
 
 	</div>
 

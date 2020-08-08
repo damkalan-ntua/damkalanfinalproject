@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Objects;
- 
+
  public class Userdetails {
 
     private Long id;
@@ -18,12 +18,12 @@ import java.util.Objects;
     public Userdetails() {}
 
     public Userdetails(Long id,String firstName, String email, String teamname, String city,Long  nbateamid) {
-      this.id = id;
-      this.firstName = firstName;
-      this.email = email;
-      this.teamname = teamname;
-      this.city = city;
-      this.nbateamid = nbateamid;
+        this.id = id;
+        this.firstName = firstName;
+        this.email = email;
+        this.teamname = teamname;
+        this.city = city;
+        this.nbateamid = nbateamid;
     }
 
     public Long getId() {
@@ -58,19 +58,19 @@ import java.util.Objects;
       this.email = email;
     }
 
-     public String getCity() {
+    public String getCity() {
          return city;
      }
 
-     public void setCity(String city) {
+    public void setCity(String city) {
          this.city = city;
      }
 
-     public Long getNbateamid() {
+    public Long getNbateamid() {
          return nbateamid;
      }
 
-     public void setNbateamid(Long nbateamid) {
+    public void setNbateamid(Long nbateamid) {
          this.nbateamid = nbateamid;
      }
 

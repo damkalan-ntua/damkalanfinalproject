@@ -7,22 +7,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <body>
-
 	<div class="container">
-
-		<c:if test="${not empty msg}">
-		    <div class="alert alert-${css} alert-dismissible" role="alert">
-			<button type="button" class="close" data-dismiss="alert"
-                                aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-			<strong>${msg}</strong>
-		    </div>
-		</c:if>
-
-		<h1>All Teams </h1>
+		<h1>NBA Team detail</h1>
 
 		<table class="table table-striped">
 			<thead>
@@ -31,7 +18,7 @@
 					<th>fullname</th>
 					<th>city</th>
 					<th>conference</th>
-					<th>abbreviation</th>
+					<th>division</th>
 				</tr>
 			</thead>
 
@@ -42,20 +29,14 @@
                     <td>${nbateam.conference}</td>
                     <td> ${nbateam.division}</td>
 
-                    <td>
-                      <spring:url value="/nbateam/${nbateam.id}/delete" var="userUrl" />
-                      <spring:url value="/nbateam/${nbateam.id}/delete" var="deleteUrl" />
-                      <spring:url value="/nbateam/${nbateam.id}/update" var="updateUrl" />
-
-                      <button class="btn btn-info"
-                                              onclick="location.href='${userUrl}'">Query</button>
-                      <button class="btn btn-primary"
-                                              onclick="location.href='${updateUrl}'">Update</button>
-                      <button class="btn btn-danger"
-                                              onclick="this.disabled=true;post('${deleteUrl}')">Delete</button>
-                    </td>
 			    </tr>
 		</table>
+        <br>
+            <spring:url value="/nbateams/list" var="teamsUrl" />
+            <button class="btn btn-info"  onclick="location.href='${teamsUrl}'">List teams</button>
+            <spring:url value="/home" var="homeUrl" />
+            <button class="btn btn-info"  onclick="location.href='${homeUrl}'">Home</button>
+        </br>
 
 	</div>
 

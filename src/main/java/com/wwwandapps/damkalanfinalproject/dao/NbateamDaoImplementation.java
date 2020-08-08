@@ -89,10 +89,8 @@ public class NbateamDaoImplementation implements NbateamDao {
 
     @Override
     public void delete(Long id) {
-
         String sql = "DELETE FROM nbateam WHERE id= :id";
         namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource("id", id));
-
     }
 
 
@@ -117,7 +115,6 @@ public class NbateamDaoImplementation implements NbateamDao {
     }
 
     private static final class NbateamMapper implements RowMapper<Nbateam> {
-
         public Nbateam mapRow(ResultSet rs, int rowNum) throws SQLException {
             Nbateam nbateam = new Nbateam();
             nbateam.setId(rs.getLong("id"));
@@ -129,26 +126,4 @@ public class NbateamDaoImplementation implements NbateamDao {
             return nbateam;
         }
     }
-
-    private static List<String> convertDelimitedStringToList(String delimitedString) {
-
-        List<String> result = new ArrayList<String>();
-
-        if (!StringUtils.isEmpty(delimitedString)) {
-            result = Arrays.asList(StringUtils.delimitedListToStringArray(delimitedString, ","));
-        }
-        return result;
-
-    }
-
-    private String convertListToDelimitedString(List<String> list) {
-
-        String result = "";
-        if (list != null) {
-            result = StringUtils.arrayToCommaDelimitedString(list.toArray());
-        }
-        return result;
-
-    }
-
-}
+ }

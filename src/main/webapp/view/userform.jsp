@@ -56,6 +56,13 @@
                             </div>
                         </spring:bind>
                     </td>
+                    <td>
+                        <spring:bind path="nbateamid" >
+                            <div>
+                                <form:input path="nbateamid" id="nbateamid" placeholder="nbateamid" />
+                            </div>
+                        </spring:bind>
+                    </td>
 
                     <td>
                       <spring:url value="/users/updatesubmit" var="updateUrl" />

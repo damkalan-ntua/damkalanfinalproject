@@ -84,7 +84,7 @@ public class UserdetailsDaoImplementation implements UserdetailsDao {
         paramSource.addValue("id", userdetails.getId());
         paramSource.addValue("firstName", userdetails.getFirstName());
         paramSource.addValue("email", userdetails.getEmail());
-        paramSource.addValue("fullname", userdetails.getTeamname());
+        paramSource.addValue("fullname", userdetails.getNbateamid());
         paramSource.addValue("city", userdetails.getCity());
         paramSource.addValue("nbateamid", userdetails.getNbateamid());
         return paramSource;

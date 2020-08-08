@@ -1,13 +1,10 @@
 package com.wwwandapps.damkalanfinalproject.controller;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +17,8 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import com.wwwandapps.damkalanfinalproject.model.User;
+import com.wwwandapps.damkalanfinalproject.service.UserServiceInterface;
 
 import com.wwwandapps.damkalanfinalproject.model.User;
 import com.wwwandapps.damkalanfinalproject.service.UserServiceInterface;
@@ -32,17 +31,12 @@ public class UserController {
     @Autowired
     private UserServiceInterface userService;
 
-
-
-
     @RequestMapping(value = "/users/list", method = RequestMethod.GET)
     public String showAllUsers(Model model) {
         logger.debug("showAllUsers()");
         model.addAttribute("users", userService.findAll());
         return "listusers.jsp";
-
     }
-
 
     @RequestMapping(value = "/users/{id}/list", method = RequestMethod.GET)
     public String showUserById(@PathVariable("id") Long id,Model model) {
@@ -51,17 +45,12 @@ public class UserController {
         return "listuser.jsp";
     }
 
-
     // show add user form
     @RequestMapping(value = "/users/add", method = RequestMethod.GET)
-    public String showAddUserForm(Model model) {
+    public String showAddUserForm(@ModelAttribute("user") @Validated User user,Model model) {
         logger.debug("showAddUserForm()");
-        User user = new User();
-        user.setFirstName("enter name");
-        user.setEmail("enter email");
-        user.setCity("Enter city");
-        user.setTeam(1);
         model.addAttribute("user", user);
+        System.out.println(user.getFirstName());
         return "newuserform.jsp";
     }
 
@@ -84,7 +73,7 @@ public class UserController {
     public String submitUpdateUserForm(@ModelAttribute("user") @Validated User user,  BindingResult result, Model model) {
         logger.debug("submitUpdateUserForm()  " );
         userService.saveOrUpdate(user);
-        return "userform.jsp";
+        return "redirect:/users/list";
     }
 
     // delete user
@@ -98,18 +87,13 @@ public class UserController {
     // show user
     @RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
     public String showUser(@PathVariable("id") Long id, Model model) {
-
         logger.debug("showUser() id: {}", id);
-
         User user = userService.findById(id);
         if (user == null) {
             model.addAttribute("css", "danger");
             model.addAttribute("msg", "User not found");
         }
         model.addAttribute("user", user);
-
         return "users/show";
-
     }
-
 }

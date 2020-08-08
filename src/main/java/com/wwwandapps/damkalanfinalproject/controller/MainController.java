@@ -43,17 +43,4 @@ public class MainController {
     return "home.jsp";
   }
 
-
-  @RequestMapping(value = "/users/crud/{id}", method = RequestMethod.GET)
-
-    public String showUser(@PathVariable("id") Long id, Model model) {
-    Optional user = userServiceCrud.findByID(id);
-    if (user == null) {
-      model.addAttribute("css", "danger");
-      model.addAttribute("msg", "User not found");
-    }
-    model.addAttribute("user", user);
-    return "showusers";
-  }
-
 }

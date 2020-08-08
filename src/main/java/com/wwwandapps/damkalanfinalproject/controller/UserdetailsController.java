@@ -1,5 +1,4 @@
 package com.wwwandapps.damkalanfinalproject.controller;
-
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,12 +27,9 @@ public class UserdetailsController {
     @Autowired
     private UserdetailsServiceImplementation userdetailsServiceImplementation;
 
-
     @RequestMapping(value = "/usersandteams", method = RequestMethod.GET)
     public String usersandteams(Model model) {
         model.addAttribute("userdetails", userdetailsServiceImplementation.findAll());
         return "listusersandteams.jsp";
     }
-
-
 }

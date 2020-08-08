@@ -4,16 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Objects;
 
 
- @Entity
- public class Nbateam {
+@Entity
+public class Nbateam {
 
-     @Id
-     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String abbreviation;
     private String city;
     private String conference;
@@ -25,12 +23,12 @@ import java.util.Objects;
 
     public Nbateam( Long id, String abbreviation, String city, String conference, String division, String fullname, String name) {
         this.id = id;
-	  this.abbreviation = abbreviation;
-	  this.city = city;
-	  this.conference = conference;
-	  this.division = division;
-	  this.fullname = fullname;
-	  this.name = name;
+        this.abbreviation = abbreviation;
+        this.city = city;
+        this.conference = conference;
+        this.division = division;
+        this.fullname = fullname;
+        this.name = name;
     }
 
     public Long getId() {
@@ -56,7 +54,6 @@ import java.util.Objects;
          return name;
      }
 
-
     public void setId(Long id) {
          this.id = id;
      }
@@ -80,8 +77,7 @@ import java.util.Objects;
          this.name = name;
      }
 
-
-     public boolean isNew() {
+    public boolean isNew() {
          return (this.id == null);
      }
 

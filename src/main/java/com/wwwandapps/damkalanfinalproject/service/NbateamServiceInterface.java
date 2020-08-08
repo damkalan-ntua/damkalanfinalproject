@@ -7,7 +7,6 @@ public interface NbateamServiceInterface {
     Nbateam findById(Long id);
     Nbateam findByName(String name);
     List<Nbateam> findAll();
-    void saveOrUpdate(Nbateam nbateam);
     void delete(Long id);
 
 }

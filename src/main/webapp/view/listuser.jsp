@@ -23,6 +23,7 @@
 					<th>first_name</th>
 					<th>Email</th>
 					<th>city</th>
+					<th>NBA team id</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -30,12 +31,10 @@
                     <td>${user.firstName}</td>
                     <td>${user.email}</td>
                     <td> ${user.city}</td>
+                    <td> ${user.nbateamid}</td>
                     <td>
-                      <spring:url value="/users/${user.id}/delete" var="home" />
-                      <spring:url value="/users/${user.id}/delete" var="deleteUrl" />
                       <spring:url value="/users/${user.id}/update" var="updateUrl" />
-
-                      <button class="btn btn-info" onclick="location.href='${userUrl}'">Query</button>
+                      <spring:url value="/users/${user.id}/delete" var="deleteUrl" />
                       <button class="btn btn-primary" onclick="location.href='${updateUrl}'">Update</button>
                       <button class="btn btn-danger" onclick="this.disabled=true;post('${deleteUrl}')">Delete</button>
                     </td>
