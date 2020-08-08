@@ -9,6 +9,8 @@ public interface UserServiceInterface {
 
     List<User> findAll();
 
+    void add(User user);
+
     void saveOrUpdate(User user);
 
     void delete(Long id);

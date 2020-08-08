@@ -29,14 +29,15 @@ public class UserServiceImplementation implements UserServiceInterface {
     }
 
     @Override
-    public void saveOrUpdate(User user) {
+    public void add(User user) { userDao.add(user); }
 
+    @Override
+    public void saveOrUpdate(User user) {
         if (findById(user.getId())==null) {
             userDao.save(user);
         } else {
             userDao.update(user);
         }
-
     }
 
     @Override

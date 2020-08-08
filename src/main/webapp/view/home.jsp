@@ -15,6 +15,8 @@ Users and Nba teams from NBAApi
 
 <a href="/users/count">Show number of  users</a>
 <p></p>
+<a href="/users/add">Add new user</a>
+<p></p>
 <a href="/users/list">List users with details</a>
 <p></p>
 <a href="/usersandteams">Show  users and and teams</a>

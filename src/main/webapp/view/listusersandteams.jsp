@@ -41,9 +41,7 @@
                     <td>${userdetail.email}</td>
                     <td>${userdetail.city}</td>
                     <td>
-                <a href="/nbateams/${userdetail.nbateamid}/list">${userdetail.teamname}</a>
-
-
+                        <a href="/nbateams/${userdetail.nbateamid}/list">${userdetail.teamname}</a>
                     </td>
 			    </tr>
 			</c:forEach>

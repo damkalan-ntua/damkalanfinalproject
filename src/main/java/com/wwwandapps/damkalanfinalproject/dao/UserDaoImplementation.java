@@ -58,6 +58,16 @@ public class UserDaoImplementation implements UserDao {
     }
 
     @Override
+    public void add(User user) {
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        String sql = "INSERT INTO USER(id, first_name, email, city, nbateamid) "
+                + "VALUES ( NULL, :firstName, :email, :city, :nbateamid)";
+        namedParameterJdbcTemplate.update(sql, getSqlParameterByModel(user), keyHolder);
+        user.setId(keyHolder.getKey().longValue());
+    }
+
+
+    @Override
     public void save(User user) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         String sql = "INSERT INTO USER(id, first_name, email, city, nbateamid) "
@@ -70,6 +80,8 @@ public class UserDaoImplementation implements UserDao {
     public void update(User user) {
         String sql = "UPDATE USER SET  first_name=:firstName, email=:email, "
                 + "city=:city, nbateamid=:nbateamid  WHERE id=:id";
+        System.out.println("user.getFirstName() ");
+        System.out.println(user.getFirstName());
         namedParameterJdbcTemplate.update(sql, getSqlParameterByModel(user));
     }
 
@@ -82,7 +94,7 @@ public class UserDaoImplementation implements UserDao {
     private SqlParameterSource getSqlParameterByModel(User user) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", user.getId());
-        paramSource.addValue("first_name", user.getFirstName());
+        paramSource.addValue("firstName", user.getFirstName());
         paramSource.addValue("email", user.getEmail());
         paramSource.addValue("city", user.getCity());
         paramSource.addValue("nbateamid", user.getTeam());

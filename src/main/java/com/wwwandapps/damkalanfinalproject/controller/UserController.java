@@ -17,12 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -56,80 +51,48 @@ public class UserController {
         return "listuser.jsp";
     }
 
-    @RequestMapping(value = "/users", method = RequestMethod.POST)
-    public String saveOrUpdateUser(@ModelAttribute("userForm") @Validated User user,
-                                   BindingResult result, Model model,
-                                   final RedirectAttributes redirectAttributes) {
-
-        logger.debug("saveOrUpdateUser() : {}", user);
-
-        if (result.hasErrors()) {
-            return "users/userform";
-        } else {
-
-            // Add message to flash scope
-            redirectAttributes.addFlashAttribute("css", "success");
-            if(user.isNew()){
-                redirectAttributes.addFlashAttribute("msg", "User added successfully!");
-            }else{
-                redirectAttributes.addFlashAttribute("msg", "User updated successfully!");
-            }
-
-            userService.saveOrUpdate(user);
-
-            // POST/REDIRECT/GET
-            return "redirect:/users/" + user.getId();
-
-            // POST/FORWARD/GET
-            // return "user/list";
-
-        }
-
-    }
 
     // show add user form
     @RequestMapping(value = "/users/add", method = RequestMethod.GET)
     public String showAddUserForm(Model model) {
-
         logger.debug("showAddUserForm()");
-
         User user = new User();
-
-        // set default value
-        user.setFirstName("damkalan");
-        user.setEmail("damkalan@mail.ntua.gr");
-        user.setCity("Athens");
+        user.setFirstName("enter name");
+        user.setEmail("enter email");
+        user.setCity("Enter city");
         user.setTeam(1);
-        model.addAttribute("userForm", user);
-        return "users/userform";
+        model.addAttribute("user", user);
+        return "newuserform.jsp";
+    }
+
+    @RequestMapping(value = "/users/addsubmit", method = RequestMethod.POST)
+    public String submitAddUserForm(@ModelAttribute("user") @Validated User user,  BindingResult result, Model model) {
+        logger.debug("submitAddUserForm()  " );
+        userService.add(user);
+        return "newuserform.jsp";
     }
 
     // show update form
     @RequestMapping(value = "/users/{id}/update", method = RequestMethod.GET)
     public String showUpdateUserForm(@PathVariable("id") Long id, Model model) {
-
         logger.debug("showUpdateUserForm() : {}", id);
+        model.addAttribute("user", userService.findById(id));
+        return "userform.jsp";
+    }
 
-        User user = userService.findById(id);
-        model.addAttribute("userForm", user);
-        return "users/userform";
-
+    @RequestMapping(value = "/users/updatesubmit", method = RequestMethod.POST)
+    public String submitUpdateUserForm(@ModelAttribute("user") @Validated User user,  BindingResult result, Model model) {
+        logger.debug("submitUpdateUserForm()  " );
+        userService.saveOrUpdate(user);
+        return "userform.jsp";
     }
 
     // delete user
-    @RequestMapping(value = "/users/{id}/delete", method = RequestMethod.POST)
-    public String deleteUser(@PathVariable("id") Long id,
-                             final RedirectAttributes redirectAttributes) {
-
-        logger.debug("deleteUser() : {}", id);
-
+     @RequestMapping(value = "/users/{id}/delete", method = RequestMethod.GET)
+    public String deleteUserById(@PathVariable("id") Long id,Model model) {
+        logger.debug("deleteUserById()");
         userService.delete(id);
-
-        redirectAttributes.addFlashAttribute("css", "success");
-        redirectAttributes.addFlashAttribute("msg", "User is deleted!");
-
-        return "redirect:/users";
-
+        return "redirect:/users/list";
     }
 
     // show user

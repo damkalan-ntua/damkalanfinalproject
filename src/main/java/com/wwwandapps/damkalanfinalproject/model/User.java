@@ -15,7 +15,7 @@ import java.util.Objects;
     private Long id;
     private String firstName;
     private String email;
-     private String city;
+    private String city;
     private int nbateamid;
 
     public User() {}
@@ -24,7 +24,7 @@ import java.util.Objects;
       this.firstName = firstName;
       this.email = email;
       this.nbateamid = nbateamid;
-        this.city = city;
+      this.city = city;
     }
 
     public Long getId() {
@@ -89,9 +89,9 @@ import java.util.Objects;
       final StringBuilder sb = new StringBuilder("User{");
       sb.append("id=").append(id);
       sb.append(", firstName='").append(firstName).append('\'');
-      sb.append(", lastName='").append(nbateamid).append('\'');
       sb.append(", email='").append(email).append('\'');
-        sb.append(", city='").append(city).append('\'');
+      sb.append(", city='").append(city).append('\'');
+      sb.append(", nbateamid='").append(nbateamid).append('\'');
       sb.append('}');
       return sb.toString();
     }
