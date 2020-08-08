@@ -65,10 +65,10 @@
                     </td>
 
                     <td>
-                      <spring:url value="/users/updatesubmit" var="updateUrl" />
+                      <spring:url value="/users/addsubmit" var="addUrl" />
                       <spring:url value="/users/${user.id}/delete" var="deleteUrl" />
 
-                      <button class="btn btn-primary" onclick="location.href='${updateUrl}'">Update</button>
+                      <button class="btn btn-primary" onclick="location.href='${addUrl}'">Add</button>
                       <button class="btn btn-danger" onclick="location.href='${deleteUrl}'">Delete</button>
                     </td>
 			    </tr>

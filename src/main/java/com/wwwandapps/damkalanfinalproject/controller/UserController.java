@@ -58,7 +58,7 @@ public class UserController {
     public String submitAddUserForm(@ModelAttribute("user") @Validated User user,  BindingResult result, Model model) {
         logger.debug("submitAddUserForm()  " );
         userService.add(user);
-        return "newuserform.jsp";
+        return "redirect:/users/list";
     }
 
     // show update form
