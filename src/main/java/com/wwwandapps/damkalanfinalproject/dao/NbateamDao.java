@@ -11,12 +11,8 @@ public interface NbateamDao {
 
     List<Nbateam> findAll();
 
-    void save(Nbateam nbateam);
-
     void update(Nbateam nbateam);
 
     void delete(Long id);
-
-    void deleteall();
 
 }

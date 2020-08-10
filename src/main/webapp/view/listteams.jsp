@@ -17,6 +17,12 @@
 
 
         <a href="/getteamsfromNBAApi">Fetch/Update nba teams data from NBAApi</a>
+        <br>
+
+        <c:if test="${empty nbateams}">
+            <br>No Fans found<br>
+        </c:if>
+        <c:if test="${not empty nbateams}">
 
 		<table class="table table-striped">
 			<thead>
@@ -27,6 +33,7 @@
 					<th>city</th>
 					<th>conference</th>
 					<th>abbreviation</th>
+					<th></th>
 				</tr>
 			</thead>
 
@@ -43,14 +50,20 @@
                         <spring:url value="/nbateams/${nbateam.id}/delete" var="deleteUrl" />
                         <button class="btn btn-info" onclick="location.href='${deleteUrl}'">Delete</button>
                     </td>
+                    <td>
+                        <spring:url value="/usersandteams/sameteam/${nbateam.id}/list" var="fansUrl" />
+                        <button class="btn btn-info" onclick="location.href='${fansUrl}'">Show Fans</button>
+                    </td>
 			    </tr>
 			</c:forEach>
 		</table>
-
-				<br>
-        		<spring:url value="/home" var="homeUrl" />
-        		<button class="btn btn-info"  onclick="location.href='${homeUrl}'">Home</button>
-        		</br>
+		 </c:if>
+        <button type="button" name="Go back" onclick="history.back()">back</button>
+        <br>
+        <br>
+        <spring:url value="/home" var="homeUrl" />
+        <button class="btn btn-info"  onclick="location.href='${homeUrl}'">Home</button>
+        </br>
 
 	</div>
 

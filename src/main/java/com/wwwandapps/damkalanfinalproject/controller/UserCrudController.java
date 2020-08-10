@@ -28,25 +28,4 @@ public class UserCrudController {
         model.addAttribute("users", userServicecrud.userAllData());
         return "listusers.jsp";
     }
-
-
-    @RequestMapping(value = "/crud/users/{id}/list", method = RequestMethod.GET)
-    public String showUserById(@PathVariable("id") Long id,Model model) {
-        logger.debug("showUserById()");
-        model.addAttribute("userr", userServicecrud.findByID(id));
-        return "listuser.jsp";
-    }
-
-    // show user
-    @RequestMapping(value = "/crud/users/{id}", method = RequestMethod.GET)
-    public String showUser(@PathVariable("id") Long id, Model model) {
-        logger.debug("showUser() id: {}", id);
-        Optional user = userServicecrud.findByID(id);
-        if (user == null) {
-            model.addAttribute("css", "danger");
-            model.addAttribute("msg", "User not found");
-        }
-        model.addAttribute("user", user);
-        return "users/show";
-    }
-}
+ }

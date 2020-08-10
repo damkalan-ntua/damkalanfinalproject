@@ -1,5 +1,5 @@
 package com.wwwandapps.damkalanfinalproject.service;
-import com.wwwandapps.damkalanfinalproject.repository.NbateamRepository;
+import com.wwwandapps.damkalanfinalproject.repository.NbateamRepositoryCrud;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,5 +7,5 @@ import org.springframework.stereotype.Service;
 public class NbateamServiceCrud {
 
     @Autowired
-    private NbateamRepository nbateamRepository;
+    private NbateamRepositoryCrud nbateamRepository;
 }

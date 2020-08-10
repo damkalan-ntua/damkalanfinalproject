@@ -12,17 +12,14 @@
 
 	<div class="container">
 
-		<c:if test="${not empty msg}">
-		    <div class="alert alert-${css} alert-dismissible" role="alert">
-			<button type="button" class="close" data-dismiss="alert"
-                                aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-			<strong>${msg}</strong>
-		    </div>
-		</c:if>
+
 
 		<h1>All Users</h1>
+
+        <c:if test="${empty users}">
+            <br>No one found<br>
+        </c:if>
+        <c:if test="${not empty users}">
 
 		<table class="table table-striped">
 			<thead>
@@ -47,12 +44,13 @@
                       <spring:url value="/users/${user.id}/update" var="updateUrl" />
                       <spring:url value="/users/${user.id}/delete" var="deleteUrl" />
                        <button class="btn btn-info" onclick="location.href='${userUrl}'">User Details</button>
-                      <button class="btn btn-info" onclick="location.href='${updateUrl}'">Update</button>
+                      <button class="btn btn-info" onclick="location.href='${updateUrl}'">Edit</button>
                       <button class="btn btn-info" onclick="location.href='${deleteUrl}'">Delete</button>
                     </td>
 			    </tr>
 			</c:forEach>
 		</table>
+		       </c:if>
         <br>
         <spring:url value="/home" var="homeUrl" />
         <button class="btn btn-info"  onclick="location.href='${homeUrl}'">Home</button>

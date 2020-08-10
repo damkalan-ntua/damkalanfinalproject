@@ -1,7 +1,7 @@
 package com.wwwandapps.damkalanfinalproject.controller;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.wwwandapps.damkalanfinalproject.repository.NbateamRepository;
+import com.wwwandapps.damkalanfinalproject.repository.NbateamRepositoryCrud;
 import com.wwwandapps.damkalanfinalproject.model.Nbateam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
@@ -14,7 +14,7 @@ import java.io.IOException;
 public class NbateamCrudController {
 
     @Autowired
-    private NbateamRepository NbateamRepository;
+    private NbateamRepositoryCrud NbateamRepository;
 
     @Autowired
     ObjectMapper objectMapper;

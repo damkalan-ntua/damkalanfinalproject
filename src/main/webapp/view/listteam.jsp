@@ -11,6 +11,11 @@
 	<div class="container">
 		<h1>NBA Team detail</h1>
 
+        <c:if test="${empty nbateam}">
+            <br>Not found<br>
+        </c:if>
+        <c:if test="${not empty nbateam}">
+
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -19,6 +24,7 @@
 					<th>city</th>
 					<th>conference</th>
 					<th>division</th>
+					<th></th>
 				</tr>
 			</thead>
 
@@ -28,10 +34,16 @@
                     <td> ${nbateam.city}</td>
                     <td>${nbateam.conference}</td>
                     <td> ${nbateam.division}</td>
-
+                    <td>
+                        <spring:url value="/usersandteams/sameteam/${nbateam.id}/list" var="fansUrl" />
+                        <button class="btn btn-info" onclick="location.href='${fansUrl}'">Show Fans</button>
+                    </td>
 			    </tr>
 		</table>
+		</c:if>
         <br>
+            <button type="button" name="Go back" onclick="history.back()">back</button>
+            <br>
             <spring:url value="/nbateams/list" var="teamsUrl" />
             <button class="btn btn-info"  onclick="location.href='${teamsUrl}'">List teams</button>
             <spring:url value="/home" var="homeUrl" />

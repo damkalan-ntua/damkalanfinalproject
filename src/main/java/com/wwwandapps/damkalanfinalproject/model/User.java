@@ -7,8 +7,8 @@ import javax.persistence.Id;
 import java.util.Objects;
 
 
- @Entity
- public class User {
+@Entity
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -99,4 +99,4 @@ import java.util.Objects;
     public boolean isNew() {
          return (this.id == null);
      }
-  }
+}

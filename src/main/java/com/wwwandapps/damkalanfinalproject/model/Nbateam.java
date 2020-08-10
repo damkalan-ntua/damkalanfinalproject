@@ -1,10 +1,8 @@
 package com.wwwandapps.damkalanfinalproject.model;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 
 @Entity
 public class Nbateam {
@@ -34,7 +32,6 @@ public class Nbateam {
     public Long getId() {
       return id;
     }
-
     public String getAbbreviation() {
       return abbreviation;
     }
@@ -57,7 +54,6 @@ public class Nbateam {
     public void setId(Long id) {
          this.id = id;
      }
-
     public void setAbbreviation(String abbreviation) {
       this.abbreviation = abbreviation;
     }
@@ -76,7 +72,6 @@ public class Nbateam {
     public void setName(String name) {
          this.name = name;
      }
-
     public boolean isNew() {
          return (this.id == null);
      }

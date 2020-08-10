@@ -1,13 +1,6 @@
 package com.wwwandapps.damkalanfinalproject.model;
 
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.Objects;
-
- public class Userdetails {
+public class Userandteam {
 
     private Long id;
     private String firstName;
@@ -15,9 +8,9 @@ import java.util.Objects;
     private String city;
     private String teamname;
     private Long  nbateamid;
-    public Userdetails() {}
+    public Userandteam() {}
 
-    public Userdetails(Long id,String firstName, String email, String teamname, String city,Long  nbateamid) {
+    public Userandteam(Long id,String firstName, String email, String teamname, String city,Long  nbateamid) {
         this.id = id;
         this.firstName = firstName;
         this.email = email;
@@ -74,4 +67,4 @@ import java.util.Objects;
          this.nbateamid = nbateamid;
      }
 
-  }
+}

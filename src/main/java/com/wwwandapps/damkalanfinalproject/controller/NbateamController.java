@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.wwwandapps.damkalanfinalproject.model.Nbateam;
 import com.wwwandapps.damkalanfinalproject.service.NbateamServiceInterface;
 
 @Controller
@@ -40,16 +39,4 @@ public class NbateamController {
         return "redirect:/nbateams/list";
     }
 
-    // show team
-    @RequestMapping(value = "/nbateams/{id}", method = RequestMethod.GET)
-    public String showNbateam(@PathVariable("id") Long id, Model model) {
-        logger.debug("showNbateam() id: {}", id);
-        Nbateam nbateam = nbateamService.findById(id);
-        if (nbateam == null) {
-            model.addAttribute("css", "danger");
-            model.addAttribute("msg", "User not found");
-        }
-        model.addAttribute("nbateam", nbateam);
-        return "users/show";
-    }
 }

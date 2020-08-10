@@ -68,7 +68,7 @@
                       <spring:url value="/users/updatesubmit" var="updateUrl" />
                       <spring:url value="/users/${user.id}/delete" var="deleteUrl" />
 
-                      <button class="btn btn-primary" onclick="location.href='${updateUrl}'">Update</button>
+                      <button class="btn btn-primary" onclick="location.href='${updateUrl}'">Save Changes</button>
                       <button class="btn btn-danger" onclick="location.href='${deleteUrl}'">Delete</button>
                     </td>
 			    </tr>
@@ -79,6 +79,8 @@
 
 
 	</form:form>
+        <button type="button" name="Go back" onclick="history.back()">back</button>
+        <br>
 		<spring:url value="/home" var="homeUrl" />
 		<button class="btn btn-info"  onclick="location.href='${homeUrl}'">Home</button>
 	</div>
